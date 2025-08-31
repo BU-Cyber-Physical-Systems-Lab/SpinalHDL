@@ -13,7 +13,7 @@ object Axi4Unburster {
     roUnburstifier.io.input << axi.toReadOnly()
     woUnburstifier.io.input << axi.toWriteOnly()
 
-    val axiUnburst = new Axi4(axi.config.copy(useLen = false))
+    val axiUnburst = new Axi4(axi.config.copy(useLen = false, useBurst=false))
     axiUnburst << roUnburstifier.io.output
     axiUnburst << woUnburstifier.io.output
     axiUnburst
