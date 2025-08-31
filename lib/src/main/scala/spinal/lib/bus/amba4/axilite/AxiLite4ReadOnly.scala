@@ -11,7 +11,10 @@ case class AxiLite4ReadOnly(config: AxiLite4Config) extends Bundle with IMasterS
   def readRsp   = r
 
   def >>(that: AxiLite4): Unit = {
-    assert(that.config == this.config)
+    assert(
+      assertion = (that.config == this.config),
+      message   = "Configurations mismatch!"
+    )
     this.readCmd >> that.readCmd
     this.readRsp << that.readRsp
   }
@@ -19,7 +22,10 @@ case class AxiLite4ReadOnly(config: AxiLite4Config) extends Bundle with IMasterS
   def <<(that: AxiLite4): Unit = that >> this
 
   def >>(that: AxiLite4ReadOnly): Unit = {
-    assert(that.config == this.config)
+    assert(
+      assertion = (that.config == this.config),
+      message   = "Configurations mismatch!"
+    )
     this.readCmd >> that.readCmd
     this.readRsp << that.readRsp
   }

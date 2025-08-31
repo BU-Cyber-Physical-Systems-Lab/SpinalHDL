@@ -15,7 +15,10 @@ case class AxiLite4WriteOnly(config: AxiLite4Config) extends Bundle with IMaster
   def writeRsp  = b
 
   def >>(that: AxiLite4): Unit = {
-    assert(that.config == this.config)
+    assert(
+      assertion = (that.config == this.config),
+      message   = "Configurations mismatch!"
+    )
     this.writeCmd >> that.writeCmd
     this.writeData >> that.writeData
     this.writeRsp << that.writeRsp
@@ -24,7 +27,10 @@ case class AxiLite4WriteOnly(config: AxiLite4Config) extends Bundle with IMaster
   def <<(that: AxiLite4): Unit = that >> this
 
   def >>(that: AxiLite4WriteOnly): Unit = {
-    assert(that.config == this.config)
+    assert(
+      assertion = (that.config == this.config),
+      message   = "Configurations mismatch!"
+    )
     this.writeCmd >> that.writeCmd
     this.writeData >> that.writeData
     this.writeRsp << that.writeRsp
