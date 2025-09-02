@@ -64,9 +64,9 @@ class Axi4ReadOnlyAddressResizer(inputConfig: Axi4Config, outputConfig: Axi4Conf
   // Override
   io.output.ar.addr.removeAssignments() := io.input.ar.addr.resized
   if (this.inputConfig.addressWidth > this.outputConfig.addressWidth)
-    println(f"Addrress size mismatch: truncated by ${this.inputConfig.addressWidth-this.outputConfig.addressWidth} bits (${this.outputConfig.addressWidth} bits -> ${this.inputConfig.addressWidth} bits)")
+    println(f"Addrress size mismatch: truncated by ${this.inputConfig.addressWidth-this.outputConfig.addressWidth} bits (${this.inputConfig.addressWidth} bits -> ${this.outputConfig.addressWidth} bits)")
   if (this.inputConfig.addressWidth < this.outputConfig.addressWidth)
-    println(f"Addrress size mismatch: extended by ${this.outputConfig.addressWidth-this.inputConfig.addressWidth} bits (${this.inputConfig.addressWidth} bits -> ${this.outputConfig.addressWidth} bits)")
+    println(f"Addrress size mismatch: extended by ${this.outputConfig.addressWidth-this.inputConfig.addressWidth} bits (${this.outputConfig.addressWidth} bits -> ${this.inputConfig.addressWidth} bits)")
   //// R
   io.input.r <> io.output.r
 }
